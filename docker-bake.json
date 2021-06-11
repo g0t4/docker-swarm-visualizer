@@ -1,0 +1,25 @@
+{
+  "group": {
+    "default": {
+      "targets": ["to_docker_images"]
+    }
+  },
+  "target": {
+    "build": {
+      "context": ".",
+      "pull": true,
+      "output": ["type=image"]
+    },
+    "to_docker_images": {
+      "inherits": ["build"],
+      "output": ["type=docker"],
+      "tags": ["swarmgs2-viz:latest"]
+    },
+    "to_docker_hub": {
+      "inherits": ["build"],
+      "output": ["type=registry"],
+      "platforms": ["linux/amd64", "linux/arm64","linux/arm/v7"],
+      "tags": ["docker.io/weshigbee/swarmgs2-viz:latest"]
+    }
+  }
+}
